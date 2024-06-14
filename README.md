@@ -1,0 +1,2 @@
+- Turn on notifications
+- GITHUB Desktop
