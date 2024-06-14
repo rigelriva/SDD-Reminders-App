@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reminder App - Placeholder Name</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center">Reminder App - Placeholder Name</h2>
+
+        <label for="">Title :</label>
+        <input type="text" id="title" />
+        <label for="">Description :</label>
+        <input type="text" id="description" />
+        <label for="">Date :</label>
+        <input type="date" id="date" />
+        <label for="">Time :</label>
+        <input type="time" id="time" />
+        
+        <button style="width: 100%" onclick="scheduleReminder();">
+            Create Reminder
+        </button>
+
+        <button style="width: 100%" onclick="saveReminders();">
+            Save Reminders as a File
+        </button>
+        <input type="file" style="width: 100%" id="loadRemindersInput" onchange="loadReminders(event);" />
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>    
+            </thead>
+            <tbody id="reminderTableBody"></tbody>
+        </table>
+    </div>
+
+    <audio src="level-up.mp3" id="notificationSound"></audio>
+
+    <div class="success-box" id="successBox">Successfully Scheduled</div>
+
+    <script src="main.js"></script>
+</body>
+</html>
