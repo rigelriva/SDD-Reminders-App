@@ -5,13 +5,12 @@ if ("Notification" in window) {
             alert("Please allow notification access!");
             location.reload();
         }
-    });        
+    });
 }
 
 var timeoutIds = [];
 
 // ------------------------------------------------------------------------------------------
-
 
 function scheduleReminder() {
     var title = document.getElementById("title").value;
@@ -30,8 +29,7 @@ function scheduleReminder() {
         var timeoutId = setTimeout(function () {
             document.getElementById("notificationSound").play();
     
-
-            var notification = new Notification(title, {
+            var notification = new Notification(title + " is overdue!", {
                 body: description,
                 requireInteraction: true,
             });
@@ -56,7 +54,6 @@ function scheduleReminder() {
         alert("The scheduled time is in the past!");
     }
 }
-
 
 // ------------------------------------------------------------------------------------------
 
@@ -148,7 +145,6 @@ function saveReminders() {
     a.click();
     URL.revokeObjectURL(url);
 }
-
 
 function loadReminders(event) {
     var file = event.target.files[0];
