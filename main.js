@@ -22,34 +22,46 @@ function scheduleReminder() {
     var scheduledTime = new Date(dateTimeString);
     var currentTime = new Date();
     var timeDifference = scheduledTime - currentTime;
+    var oneHourBefore = timeDifference - (60 * 60 * 1000);
 
     if (timeDifference > 0) {
         addReminder(title, description, dateTimeString);
-    
-        var timeoutId = setTimeout(function () {
+
+        if (oneHourBefore > 0) {
+            var oneHourTimeoutId = setTimeout(function () {
+                var notification = new Notification("Reminder: " + title, {
+                    body: "This task is due in 1 hour.",
+                    requireInteraction: true,
+                });
+            }, oneHourBefore);
+
+            timeoutIds.push(oneHourTimeoutId);
+        }
+
+        var dueTimeoutId = setTimeout(function () {
             document.getElementById("notificationSound").play();
-    
+
             var notification = new Notification(title + " is overdue!", {
                 body: description,
                 requireInteraction: true,
             });
         }, timeDifference);
-    
-        timeoutIds.push(timeoutId);
-    
+
+        timeoutIds.push(dueTimeoutId);
+
         // Clear input fields
         document.getElementById("title").value = "";
         document.getElementById("description").value = "";
         document.getElementById("date").value = "";
         document.getElementById("time").value = "";
-    
+
         // Show success message box
         var successBox = document.getElementById("successBox");
         successBox.style.display = "block";
         setTimeout(function () {
             successBox.style.display = "none";
         }, 2000); // Hide after 2 seconds
-    
+
     } else {
         alert("The scheduled time is in the past!");
     }
@@ -85,7 +97,7 @@ function addReminder(title, description, dateTimeString) {
         var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
         passedCell.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-        
+
         // Update countdown every second
         var countdownInterval = setInterval(function() {
             timeDifference -= 1000;
