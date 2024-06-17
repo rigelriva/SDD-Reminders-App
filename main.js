@@ -22,20 +22,20 @@ function scheduleReminder() {
     var scheduledTime = new Date(dateTimeString);
     var currentTime = new Date();
     var timeDifference = scheduledTime - currentTime;
-    var oneHourBefore = timeDifference - (60 * 60 * 1000);
+    var oneDayBefore = timeDifference - (24 * 60 * 60 * 1000);
 
     if (timeDifference > 0) {
         addReminder(title, description, dateTimeString);
 
-        if (oneHourBefore > 0) {
-            var oneHourTimeoutId = setTimeout(function () {
+        if (oneDayBefore > 0) {
+            var oneDayTimeoutId = setTimeout(function () {
                 var notification = new Notification("Reminder: " + title, {
-                    body: "This task is due in 1 hour.",
+                    body: "This task is due in 1 day.",
                     requireInteraction: true,
                 });
-            }, oneHourBefore);
+            }, oneDayBefore);
 
-            timeoutIds.push(oneHourTimeoutId);
+            timeoutIds.push(oneDayTimeoutId);
         }
 
         var dueTimeoutId = setTimeout(function () {
