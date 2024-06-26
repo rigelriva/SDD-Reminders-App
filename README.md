@@ -1,2 +1,3 @@
 - Turn on notifications
 - GITHUB Desktop
+- How to use and navigate, steps
