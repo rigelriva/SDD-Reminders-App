@@ -1,8 +1,12 @@
+/* Set the overall font family and size for the body, and background color */
 body {
     font-family: "Arial", sans-serif;
     background-color: #eaeaea;
+    font-size: 15px;
 }
-.container {  
+
+/* Style the main container, centering it, setting a max width, and adding padding and box shadow */
+.container {
     max-width: 500px;
     margin: auto;
     background-color: #fff;
@@ -10,40 +14,56 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Add margin and box-sizing to labels, inputs, and buttons */
 label,
 input,
 button {
     margin: 10px 0;
     box-sizing: border-box;
 }
+
+/* Set input fields to take the full width of their container and add a top margin */
 input {
     width: 100%;
     margin-top: 5px;
 }
-table{
+
+/* Style the table, making it take full width and collapse borders */
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
+
+/* Style table cells and headers, adding padding, border, and center alignment */
 th,
 td {
     padding: 5px;
     border: 1px solid #ddd;
     text-align: center;
 }
+
+/* Set background color and text color for table headers */
 th {
     background-color: #4c66af;
     color: white;
 }
+
+/* Style buttons with background color, text color, padding, and no border */
 button {
     background-color: #4c66af;
     color: white;
     padding: 5px;
     border: none;
 }
+
+/* Change button background color on hover */
 button:hover {
     background-color: #465d9e;
 }
+
+/* Style the success message box, centering it, setting background and text color, and adding padding */
 .success-box {
     position: fixed;
     top: 50%;
@@ -57,9 +77,15 @@ button:hover {
     animation: fadeInOut 2s ease-in-out;
 }
 
+/* Define keyframes for fading in and out animation of the success box */
 @keyframes fadeInOut {
     0% { opacity: 0; }
     10% { opacity: 1; }
     90% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* Add a red outline to invalid input fields */
+input:invalid {
+    outline: 1px solid red;
 }
