@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Remindify</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Remindify</title> <!-- Title of the webpage -->
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
     <div class="container">
-        <h2 style="text-align: center">Remindify</h2>
+        <h2 style="text-align: center">Remindify</h2> <!-- Header of the application -->
 
-        <label for="">Title :</label>
-        <input type="text" id="title" />
-        <label for="">Description :</label>
-        <input type="text" id="description" />
-        <label for="">Date :</label>
-        <input type="date" id="date" />
-        <label for="">Time :</label>
-        <input type="time" id="time" />
+        <!-- Input fields for reminder details -->
+        <label for="title">Title :</label> <!-- Label for the title input field -->
+        <input type="text" id="title" /> <!-- Input field for the reminder title -->
+
+        <label for="description">Description :</label> <!-- Label for the description input field -->
+        <input type="text" id="description" /> <!-- Input field for the reminder description -->
+
+        <label for="date">Date :</label> <!-- Label for the date input field -->
+        <input type="date" id="date" /> <!-- Input field for the reminder date -->
+
+        <label for="time">Time :</label> <!-- Label for the time input field -->
+        <input type="time" id="time" /> <!-- Input field for the reminder time -->
         
+        <!-- Button to create a new reminder -->
         <button style="width: 100%" onclick="scheduleReminder();">
             Create Reminder
         </button>
 
+        <!-- Button to save reminders to a file -->
         <button style="width: 100%" onclick="saveReminders();">
             Save Reminders as a File
         </button>
+        
+        <!-- Input field to load reminders from a file -->
         <input type="file" style="width: 100%" id="loadRemindersInput" onchange="loadReminders(event);" />
 
+        <!-- Table to display the list of reminders -->
         <table border="1">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date & Time</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Title</th> <!-- Table header for reminder title -->
+                    <th>Description</th> <!-- Table header for reminder description -->
+                    <th>Date & Time</th> <!-- Table header for reminder date and time -->
+                    <th>Status</th> <!-- Table header for reminder status -->
+                    <th>Action</th> <!-- Table header for action buttons -->
                 </tr>    
             </thead>
-            <tbody id="reminderTableBody"></tbody>
+            <tbody id="reminderTableBody"></tbody> <!-- Table body to hold reminder rows -->
         </table>
     </div>
 
+    <!-- Audio element for notification sound -->
     <audio src="level-up.mp3" id="notificationSound"></audio>
 
+    <!-- Success message box, initially hidden -->
     <div class="success-box" id="successBox">Successfully Scheduled</div>
 
+    <!-- Link to external JavaScript file -->
     <script src="main.js"></script>
 </body>
 </html>
