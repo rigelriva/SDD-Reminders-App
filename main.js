@@ -54,8 +54,9 @@ function scheduleReminder() {
     // Calculate the difference in milliseconds between the scheduled time and the current time
     var timeDifference = scheduledTime - currentTime;
 
-    // Calculate a time one day before the scheduled time to trigger a notification
+    // Calculate times for 1 day and 1 hour before the scheduled time
     var oneDayBefore = timeDifference - (24 * 60 * 60 * 1000);
+    var oneHourBefore = timeDifference - (60 * 60 * 1000);
 
     // Check if the scheduled time is in the future
     if (timeDifference > 0) {
@@ -65,6 +66,9 @@ function scheduleReminder() {
         // Schedule a notification one day before the scheduled time, if applicable
         if (oneDayBefore > 0) {
             var oneDayTimeoutId = setTimeout(function () {
+                // Play the notification sound
+                document.getElementById("notificationSound").play();
+
                 // Create a notification for the reminder one day before its due date
                 var notification = new Notification("Reminder: " + title, {
                     body: "This task is due in 1 day.",
@@ -76,9 +80,26 @@ function scheduleReminder() {
             timeoutIds.push(oneDayTimeoutId);
         }
 
+        // Schedule a notification one hour before the scheduled time, if applicable
+        if (oneHourBefore > 0) {
+            var oneHourTimeoutId = setTimeout(function () {
+                // Play the notification sound
+                document.getElementById("notificationSound").play();
+
+                // Create a notification for the reminder one hour before its due date
+                var notification = new Notification("Reminder: " + title, {
+                    body: "This task is due in 1 hour.",
+                    requireInteraction: true,  // Ensure the notification stays visible until interacted with
+                });
+            }, oneHourBefore);
+
+            // Store the timeout ID in the array for later reference (e.g., to cancel the timeout if needed)
+            timeoutIds.push(oneHourTimeoutId);
+        }
+
         // Schedule a notification for when the reminder is due
         var dueTimeoutId = setTimeout(function () {
-            // Play a notification sound
+            // Play the notification sound
             document.getElementById("notificationSound").play();
 
             // Create a notification for the overdue reminder
@@ -205,7 +226,6 @@ function saveReminders() {
         // Add formatted reminder information to the 'reminders' array
         reminders.push(reminder);
     }
-
 
     var blob = new Blob([reminders.join('\n')], { type: 'text/plain' });     // Create a Blob containing all reminders formatted as text
     var url = URL.createObjectURL(blob);   // Create a URL for the Blob object
