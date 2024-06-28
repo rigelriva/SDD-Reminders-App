@@ -184,12 +184,12 @@ function addReminder(title, description, dateTimeString) {
             } else {
                 // If the reminder's scheduled time has passed, display "Overdue" in the 'passedCell'
                 clearInterval(countdownInterval);
-                passedCell.innerHTML = "Overdue";
+                passedCell.innerHTML = "<span style='color: red; font-weight: bold;'>Overdue</span>";
             }
         }, 1000);
     } else {
         // If the reminder's scheduled time has passed, display "Overdue" in the 'passedCell'
-        passedCell.innerHTML = "Overdue";
+        passedCell.innerHTML = "<span style='color: red; font-weight: bold;'>Overdue</span>";
     }
 
     // Insert a delete button in the 'actionCell' cell of the reminder table row
